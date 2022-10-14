@@ -12,6 +12,8 @@ public class pc : MonoBehaviour
     [SerializeField] private Tilemap walkable;
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb2d;
+    [SerializeField] private float radius;
+    [SerializeField] private LayerMask objectCheck;
     
     // Start is called before the first frame update
     void Start()
@@ -69,5 +71,42 @@ public class pc : MonoBehaviour
 
         }
         //animator.SetFloat("pcSpeed", Mathf.Abs(init - transform.position.magnitude));
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            var collision = Physics2D.OverlapCircle(transform.position, radius, objectCheck);
+            if (collision != null)
+            {
+                Debug.Log("Collided!");
+                IInteract interactible = collision.gameObject.GetComponent<IInteract>();
+                if (interactible != null) //If object is interactible...
+                {
+                    Debug.Log("Interactible Detected!");
+                    interactible.interact();
+                }
+                else
+                {
+                    Dialogue dialogue =
+                        new Dialogue("Hmm... It doesn't look like there's anything to interact with around here...");
+                    DialogueManager.Instance.StartDialogue(dialogue);
+                }
+            }
+            else
+            {
+                Dialogue dialogue =
+                    new Dialogue("Hmm... It doesn't look like there's anything to interact with around here...");
+                DialogueManager.Instance.StartDialogue(dialogue);
+            }
+        }
+        /*var collision = Physics2D.OverlapCircle(transform.position, radius, objectCheck);
+        if (collision != null)
+        {
+            Debug.Log("Collided!");
+            IInteract interactible = collision.gameObject.GetComponent<IInteract>();
+            if (interactible != null) //If object is interactible...
+            {
+                Debug.Log("Interactible Detected!");
+                interactible.interact();
+            }
+        }*/
     }
 }

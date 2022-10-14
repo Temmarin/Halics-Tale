@@ -99,10 +99,8 @@ public class AStarManager : MonoBehaviour
 
     IEnumerator movement()
     {
-        Debug.Log("InMovement");
         while (true)
         {
-            Debug.Log("InWhileLoop");
             /*int randX = UnityEngine.Random.Range(0, bounds.size.x - 1);
             int randY = UnityEngine.Random.Range(0, bounds.size.y - 1);
             var target = walkableArea[randX, randY];*/
@@ -113,7 +111,6 @@ public class AStarManager : MonoBehaviour
             
             if (checkWalkable(target))
             {
-                Debug.Log("InCheckWalkable");
                 path = astar.CreatePath(walkableArea, GridPositionOfIdie, (Vector2Int)target, true);
                 while (path == null)
                 {
@@ -126,7 +123,6 @@ public class AStarManager : MonoBehaviour
                 yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 5f));
                 foreach (var spot in path)
                 {
-                    Debug.Log("ShouldMove");
                     var targetPos = new Vector2(spot.X, spot.Y);
                     while (Vector2.Distance(GridPositionOfIdie, new Vector2(spot.X, spot.Y)) > 0.1f)
                     {
@@ -136,7 +132,7 @@ public class AStarManager : MonoBehaviour
                         {
                             bird.flipX = true;
                         }
-                        else if (idie.transform.position.y < targetPos.y)
+                        else if (idie.transform.position.x > targetPos.x)
                         {
                             bird.flipX = false;
                         }
@@ -144,7 +140,6 @@ public class AStarManager : MonoBehaviour
                     }
                 }
                 anim.SetFloat("birdSpeed", 0f);
-                Debug.Log("NoMove");
                 
                 /*for (int i = 0; i < path.Count; i++)
                 {
@@ -162,7 +157,6 @@ public class AStarManager : MonoBehaviour
                 anim.SetBool("canInteract", false);
                 yield return new WaitForSeconds(UnityEngine.Random.Range(2f, 5f));
             }
-            Debug.Log("CoroutineRefresh");
             yield return null;
         }
     }
