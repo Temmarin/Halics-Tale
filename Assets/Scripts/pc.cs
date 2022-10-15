@@ -76,11 +76,9 @@ public class pc : MonoBehaviour
             var collision = Physics2D.OverlapCircle(transform.position, radius, objectCheck);
             if (collision != null)
             {
-                Debug.Log("Collided!");
                 IInteract interactible = collision.gameObject.GetComponent<IInteract>();
                 if (interactible != null) //If object is interactible...
                 {
-                    Debug.Log("Interactible Detected!");
                     interactible.interact();
                 }
                 else

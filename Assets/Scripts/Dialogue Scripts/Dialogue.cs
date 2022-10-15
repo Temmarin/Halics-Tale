@@ -10,6 +10,12 @@ public class Dialogue
         sentences = new string[1];
         sentences[0] = sentence;
     }
+
+    public Dialogue(string[] sentence)
+    {
+        sentences = sentence;
+    }
+    
     public string[] sentences;
     
 }

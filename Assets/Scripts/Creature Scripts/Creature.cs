@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Object : MonoBehaviour, IInteract
+public class Creature : MonoBehaviour, IInteract
 {
     public void interact ()
     {
@@ -14,7 +13,7 @@ public abstract class Object : MonoBehaviour, IInteract
 
     public virtual string[] getMessage()
     {
-        string message = "You're... not quite sure what this is? It's definitely an object, though.";
+        string message = "That's a creature of some kind, alright.";
         return stringToArray(message);
     }
 

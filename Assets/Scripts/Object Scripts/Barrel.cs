@@ -4,33 +4,28 @@ using UnityEngine;
 
 public class Barrel : Object
 {
-    protected int keyIndex = 0;
+    protected int keyIndex = 7;
+    private bool interacted = false;
     
-    public override string getMessage()
+    public override string[] getMessage()
     {
-        if (!checkKey(keyIndex))
+        //If interacting with the barrel after acquiring the crowbar
+        if (KeyIndex.Instance.checkKey(keyIndex))
         {
-            return
-                "You inspect the barrel. It's old and weathered, but the lid is still shut tight. Maybe if you had a crowbar or something...";
+            if (!interacted)
+            {
+                interacted = true;
+                return stringToArray("You pry off the barrel's lid with the rusty crowbar you found. Unfortunately, there's nothing but dust and rotting wood inside.");
+            }
+            else
+            {
+                return stringToArray("You've already opened this one. Still nothin'.");
+            }
         }
-
-        if (checkKey(keyIndex))
+        //If interacting with the barrel before acquiring the crowbar
+        else
         {
-            return
-                "You pry open the barrel's lid with the rusty crowbar you found. Unfortunately, there's nothing but dust and rotting wood inside.";
+            return stringToArray("You inspect the barrel. It's old and weathered, but the lid is still shut tight. Maybe if you had a crowbar or something you could open it...");
         }
-
-        return "There must be an error here!";
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
