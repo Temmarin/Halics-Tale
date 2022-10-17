@@ -5,7 +5,6 @@ using UnityEngine;
 public class WellWithKey : Well
 {
     private int updateKeyIndex = 13;
-    private bool interacted = false;
     
     public override string[] getMessage()
     {

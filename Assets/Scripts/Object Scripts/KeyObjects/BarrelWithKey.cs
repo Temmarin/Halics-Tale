@@ -5,7 +5,6 @@ using UnityEngine;
 public class BarrelWithKey : Barrel
 {
     private int updateKeyIndex = 8;
-    private bool interacted = false;
     
     public override string[] getMessage()
     {

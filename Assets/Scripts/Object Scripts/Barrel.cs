@@ -5,7 +5,7 @@ using UnityEngine;
 public class Barrel : Object
 {
     protected int keyIndex = 7;
-    private bool interacted = false;
+    protected bool interacted = false;
     
     public override string[] getMessage()
     {

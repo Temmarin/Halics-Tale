@@ -5,7 +5,7 @@ using UnityEngine;
 public class Well : Object
 {
     protected int keyIndex = 12;
-    private bool interacted = false;
+    protected bool interacted = false;
 
     public override string[] getMessage()
     {
