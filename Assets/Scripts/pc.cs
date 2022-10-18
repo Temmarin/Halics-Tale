@@ -14,6 +14,8 @@ public class pc : MonoBehaviour
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private float radius;
     [SerializeField] private LayerMask objectCheck;
+    [SerializeField] private AudioSource audioSourceMovement;
+    [SerializeField] private AudioSource audioSourceInteract;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,10 @@ public class pc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.anyKey)
+        {
+            audioSourceMovement.mute = false;
+        }
         //var init = transform.position.magnitude;
         //animator.SetFloat("pcSpeed", transform.position.magnitude);
         //animator.SetFloat("pcSpeed", rb2d.velocity.magnitude);
@@ -68,11 +74,13 @@ public class pc : MonoBehaviour
         if (!Input.anyKey)
         {
             animator.SetFloat("pcSpeed", 0f);
+            audioSourceMovement.mute = true;
 
         }
         //animator.SetFloat("pcSpeed", Mathf.Abs(init - transform.position.magnitude));
         if (Input.GetKeyDown(KeyCode.E))
         {
+            audioSourceInteract.Play();
             var collision = Physics2D.OverlapCircle(transform.position, radius, objectCheck);
             if (collision != null)
             {

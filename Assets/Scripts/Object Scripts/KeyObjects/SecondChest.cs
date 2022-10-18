@@ -8,6 +8,7 @@ public class SecondChest : Object
     private int keyIndex2 = 10;
     private int updateKeyIndex = 11;
     private bool interacted = false;
+    [SerializeField] private Sprite updateImage;
     
     public override string[] getMessage()
     {
@@ -18,6 +19,7 @@ public class SecondChest : Object
             {
                 KeyIndex.Instance.updateKey(updateKeyIndex);
                 interacted = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = updateImage;
                 return stringToArray("You try the newest key you have with the lock on the chest. It slides in, and with a click, the chest opens. Inside you find a shovel. Engraved on the handle are the words, 'Secrets Lie Buried In Ash'");
             }
             else

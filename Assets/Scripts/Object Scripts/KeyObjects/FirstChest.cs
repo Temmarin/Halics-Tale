@@ -7,6 +7,7 @@ public class FirstChest : Object
     private int keyIndex = 6;
     private int updateKeyIndex = 7;
     private bool interacted = false;
+    [SerializeField] private Sprite updateImage;
     
     public override string[] getMessage()
     {
@@ -17,6 +18,7 @@ public class FirstChest : Object
             {
                 KeyIndex.Instance.updateKey(updateKeyIndex);
                 interacted = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = updateImage;
                 return stringToArray("You try the key you have with the lock on the chest. It slides in, and with a click, the chest opens. Inside you find a crowbar.How peculiar...");
             }
             else

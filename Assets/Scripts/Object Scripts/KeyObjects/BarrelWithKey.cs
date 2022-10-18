@@ -15,18 +15,20 @@ public class BarrelWithKey : Barrel
             {
                 KeyIndex.Instance.updateKey(updateKeyIndex);
                 interacted = true;
-                string[] dialogue = new string[3];
+                string[] dialogue = new string[4];
                 dialogue[0] = "You pry off the barrel's lid with the rusty crowbar you found. Inside, you find a strange letter...";
-                dialogue[1] = "To My Dearest Robert,\n Distance is nothing compared to this. Every day I yearn for you, only to remember you're gone.";
-                dialogue[2] = "Until the day I pass, and I might see you again on the other side, please... wait for me. \n Your Dearest, \n Matilda";
+                dialogue[1] = "'To My Dearest Robert,\nDistance is nothing compared to this. Every day I yearn for you, only to remember you're gone.'";
+                dialogue[2] = "'Until the day I pass, and I might see you again on the other side, please... wait for me.'";
+                dialogue[3] = "'Your Dearest,\nMatilda'";
                 return dialogue;
             }
             else
             {
-                string[] dialogue = new string[3];
+                string[] dialogue = new string[4];
                 dialogue[0] = "You've already removed the letter from the barrel. You decide to read it over again...";
-                dialogue[1] = "To My Dearest Robert,\n Distance is nothing compared to this. Every day I yearn for you, only to remember you're gone.";
-                dialogue[2] = "Until the day I pass, and I might see you again on the other side, please... wait for me. \n Your Dearest, \n Matilda";
+                dialogue[1] = "'To My Dearest Robert,\nDistance is nothing compared to this. Every day I yearn for you, only to remember you're gone.'";
+                dialogue[2] = "'Until the day I pass, and I might see you again on the other side, please... wait for me.'";
+                dialogue[3] = "'Your Dearest,\nMatilda'";
                 return dialogue;
             }
         }
