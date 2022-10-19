@@ -17,7 +17,8 @@ public class Door : Object
         {
             //If you have the final key that unlocks the door
             KeyIndex.Instance.updateKey(updateKeyIndex2);
-            return stringToArray("The ornate key slides into the old lock, and, with a click, it opens.");
+            pc.Instance.teleportPlayer();
+            return stringToArray("The ornate key slides into the old lock, and, with a click, it opens. Eagerly, you head inside...");
         }
         else if (KeyIndex.Instance.checkKey(keyIndex1) || KeyIndex.Instance.checkKey(keyIndex2))
         {

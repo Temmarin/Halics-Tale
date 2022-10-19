@@ -5,8 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class pc : MonoBehaviour
 {
+    public static pc Instance;
+    
     [SerializeField] private float forceMult;
-    //[SerializeField] private Rigidbody2D pcRb2d;
     [SerializeField] private SpriteRenderer pcSr;
     [SerializeField] private SpriteRenderer shadowSr;
     [SerializeField] private Tilemap walkable;
@@ -16,11 +17,12 @@ public class pc : MonoBehaviour
     [SerializeField] private LayerMask objectCheck;
     [SerializeField] private AudioSource audioSourceMovement;
     [SerializeField] private AudioSource audioSourceInteract;
+    [SerializeField] private GameObject teleportPad;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        Instance = this;
     }
 
     // Update is called once per frame
@@ -103,16 +105,21 @@ public class pc : MonoBehaviour
                 DialogueManager.Instance.StartDialogue(dialogue);
             }
         }
-        /*var collision = Physics2D.OverlapCircle(transform.position, radius, objectCheck);
-        if (collision != null)
+    }
+
+    public void teleportPlayer()
+    {
+        StartCoroutine(initiateTeleport());
+    }
+
+    IEnumerator initiateTeleport()
+    {
+        while (!Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("Collided!");
-            IInteract interactible = collision.gameObject.GetComponent<IInteract>();
-            if (interactible != null) //If object is interactible...
-            {
-                Debug.Log("Interactible Detected!");
-                interactible.interact();
-            }
-        }*/
+            yield return null;
+        }
+        //Fade Camera here?
+        gameObject.transform.position = teleportPad.transform.position;
+        yield return null;
     }
 }
